@@ -4,19 +4,21 @@
 \name{primates2017_broken}
 \alias{primates2017_broken}
 \title{Comparative data for 16 species of primates with some broken values}
-\format{A data frame with 19 rows and 4 variables:
+\format{
+A data frame with 19 rows and 4 variables:
 \describe{
-    \item{scientific_name}{scientific names, with embedded subheaders
-        for geographic region and taxonomic family and broken values}
-    \item{common_name}{vernacular name, as listed in Estrada et al.
-        (2017)}
-    \item{red_list_status}{IUCN Red List Status in January 2017}
-    \item{mass_kg}{mean body mass in kilograms}
-}}
+\item{scientific_name}{scientific names, with embedded subheaders
+for geographic region and taxonomic family and broken values}
+\item{common_name}{vernacular name, as listed in Estrada et al.
+(2017)}
+\item{red_list_status}{IUCN Red List Status in January 2017}
+\item{mass_kg}{mean body mass in kilograms}
+}
+}
 \source{
 Estrada, Alejandro, et al. "Impending extinction crisis of the
-        world's primates: Why primates matter." Science Advances 3.1 (2017):
-        e1600946. \url{http://advances.sciencemag.org/content/3/1/e1600946.full}
+world's primates: Why primates matter." Science Advances 3.1 (2017):
+e1600946. \url{https://doi.org/10.1126/sciadv.1600946}
 }
 \usage{
 primates2017_broken

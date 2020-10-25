@@ -30,7 +30,7 @@ OGames
 
 ## -----------------------------------------------------------------------------
 OGames %>%
-  unbreak_vals("^[0-9]", Games, Games_unbroken, .slice_groups = TRUE) %>%
+  unbreak_vals("^[0-9]", Games, Games_unbroken, slice_groups = TRUE) %>%
   select(Games_unbroken, everything())
 
 ## -----------------------------------------------------------------------------
@@ -71,6 +71,68 @@ basketball
 unbreak_rows(basketball, "^Most", v2)
 
 ## -----------------------------------------------------------------------------
+vehicles <- 
+data.frame(
+  stringsAsFactors = FALSE,
+           Vehicle = c(NA, NA, NA, "Truck", "Motorcycle", "Sedan", "Van"),
+             Price = c("in","2014",
+                       "(local currency)","50000","44000","33000","50000"),
+             Color = c(NA, NA, NA, "White", "Black", "Red", "White"),
+         Emissions = c("Certificate", NA, NA, "TRUE", "FALSE", "TRUE", "TRUE")
+)
+vehicles
+
+## -----------------------------------------------------------------------------
+mash_colnames(df= vehicles, n_name_rows = 3, keep_names = TRUE)
+
+## -----------------------------------------------------------------------------
+vehicles_skip <- 
+data.frame(
+  stringsAsFactors = FALSE,
+                X1 = c("Vehicle",NA,NA,NA,"Truck",
+                       "Motorcycle","Sedan","Van"),
+                X2 = c("Price","in","2014",
+                       "(local currency)","50000","44000","33000","50000"),
+                X3 = c("Color", NA, NA, NA, "White", "Black", "Red", "White"),
+                X4 = c("Emissions","Certificate",NA,
+                       NA,"TRUE","FALSE","TRUE","TRUE")
+)
+vehicles_skip
+
+## -----------------------------------------------------------------------------
+mash_colnames(df= vehicles_skip, n_name_rows = 4, keep_names = FALSE)
+
+## -----------------------------------------------------------------------------
+survey <- 
+data.frame(
+  stringsAsFactors = FALSE,
+                X1 = c("Participant", NA, "12", "34", "45", "123"),
+                X2 = c("How did you hear about us?",
+                       "TV","TRUE","FALSE","FALSE","FALSE"),
+                X3 = c(NA, "Social Media", "FALSE", "TRUE", "FALSE", "FALSE"),
+                X4 = c(NA, "Radio", "FALSE", "TRUE", "FALSE", "TRUE"),
+                X5 = c(NA, "Flyer", "FALSE", "FALSE", "FALSE", "FALSE"),
+                X6 = c("Age", NA, "31", "23", "19", "24")
+)
+
+survey
+mash_colnames(survey,2,keep_names = FALSE,sliding_headers = TRUE, sep = "_")
+
+## -----------------------------------------------------------------------------
 example_spreadsheet <- system.file("extdata/dog_test.xlsx", package = "unheadr")
 annotate_mf(example_spreadsheet, orig = Task, new = Task_annotated)
+
+## -----------------------------------------------------------------------------
+example_spreadsheetb <- system.file("extdata/boutiques.xlsx", package = "unheadr")
+annotate_mf_all(example_spreadsheetb)
+
+## -----------------------------------------------------------------------------
+guests <- 
+  unlist(strsplit(c("6     COAHUILA        20/03/2020
+712        COAHUILA             20/03/2020"),"\n"))
+
+guests
+
+## -----------------------------------------------------------------------------
+regex_valign(guests, "\\b(?=[A-Z])")
 

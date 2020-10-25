@@ -17,25 +17,29 @@ untangle2(df, regex, orig, new)
 }
 \value{
 A tibble without the matched subheaders and a new variable containing
-  the grouping data.
+the grouping data.
 }
 \description{
 Rectangling embedded subheaders
 }
 \details{
 Special thanks to Jenny Bryan for fixing the initial tidyeval code
-  and overall function structure.
+and overall function structure.
 }
 \examples{
 data(primates2017)
 # put taxonomic family in its own variable (matches the suffix "DAE")
 untangle2(primates2017, "DAE$", scientific_name, family)
 # put geographic regions in their own variable (matching them all by name)
-untangle2(primates2017, "Asia|Madagascar|Mainland Africa|Neotropics",
-          scientific_name, family)
+untangle2(
+  primates2017, "Asia|Madagascar|Mainland Africa|Neotropics",
+  scientific_name, family
+)
 # with magrittr pipes (re-exported in this package)
 primates2017 \%>\%
   untangle2("DAE$", scientific_name, family) \%>\%
-  untangle2("Asia|Madagascar|Mainland Africa|Neotropics",
-             scientific_name, region)
+  untangle2(
+    "Asia|Madagascar|Mainland Africa|Neotropics",
+    scientific_name, region
+  )
 }
