@@ -5,6 +5,7 @@ knitr::opts_chunk$set(
 )
 library(unheadr)
 library(dplyr)
+library(tidyr)
 
 ## -----------------------------------------------------------------------------
 dat <- data.frame(
@@ -47,6 +48,21 @@ knicks
 
 ## -----------------------------------------------------------------------------
 knicks %>% unwrap_cols(groupingVar = player, separator = ", ")
+
+## -----------------------------------------------------------------------------
+merged_dat <- data.frame(
+  stringsAsFactors = FALSE,
+  Name = c("Valery V."),
+  Asset = c("Apartment\n\nPlot\nHouse\nOther\nApartment"),
+  Area = c("45.7\n\n69.2\n65.0\n32.2\n36.9\n\n\n"),
+  Status = c("Owned\n\nOwned\nIn use\nUnknown\nOwned\n")
+)
+merged_dat
+
+## -----------------------------------------------------------------------------
+merged_dat %>%
+  mutate(across(c(Asset:Status), squish_newlines)) %>%
+  tidyr::separate_rows(c(Asset:Status), sep = "\n")
 
 ## -----------------------------------------------------------------------------
 basketball <-
